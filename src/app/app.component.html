@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <h1 class="header">ZapWhat</h1>
+    <ul id="messages">
+      <li *ngFor="let msg of msgs" [ngClass]="{'serverMsg':msg.type==1}">{{msg.msg}}</li>
+    </ul>
+    <div>
+      <input [(ngModel)]="msgInput" (keyup.enter)="sendMsg()" id="m" autocomplete="off" /><button (click)="sendMsg()">Send</button>
+    </div>
+  </body>
+</html>
