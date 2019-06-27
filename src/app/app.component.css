@@ -9,7 +9,6 @@ div.login button { width: 9.6%; background: #1EBEA5; border: none; padding: 10px
 #messages { list-style-type: none; margin: 0; padding: 0; }
 #messages li { padding: 5px 10px; background: #eee;}
 .serverMsg{margin-left: 0%!important;text-align: left!important;border-radius: 0px 15px 15px 15px;
-    ;
     width: 50%;    word-wrap: break-word;}
 .serverMsg2{text-align: right;border-radius: 15px 0px 15px 15px;
     background: powderblue!important;
