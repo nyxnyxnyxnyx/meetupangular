@@ -557,7 +557,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\var\www\meetup\angularmeetup\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /Users/m-002/Documents/GitHub/meetupangular/src/styles.css */"./src/styles.css");
 
 
 /***/ })
