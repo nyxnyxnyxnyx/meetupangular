@@ -18,11 +18,17 @@
   <body *ngIf="isLogin">
       <h1 class="header">ZapWhat</h1>
       <ul id="messages">
-        <li *ngFor="let msg of msgs" [ngClass]="{'serverMsg':msg.type==2,'serverMsg2':msg.type==1}">{{msg.msg}}</li>
-        <li *ngIf="writting" class="writting animated bounce">Zappy esta escribiendo...</li>
+        <li *ngFor="let msg of msgs" [ngClass]="{'serverMsg':msg.type==2,'serverMsg2':msg.type==1}">
+        <span class="user">{{msg.user}}</span> {{msg.msg}}
+        </li>
+        <li *ngIf="writting.length > 0" class="writting animated bounce">
+          <span *ngFor="let user of writting; let last = last">
+            {{user}}<span *ngIf="!last">,</span>
+          </span> <span *ngIf="writting.length == 1"> esta</span> <span *ngIf="writting.length > 1"> estan</span> escribiendo...
+        </li>
       </ul>
       <div class="msg">
-        <input [(ngModel)]="msgInput" (keyup.enter)="sendMsg()" id="m" autocomplete="off" /><button (click)="sendMsg()">Send</button>
+        <input [(ngModel)]="msgInput" (ngModelChange)="sendWrite()" (keyup.enter)="sendMsg()" id="m" autocomplete="off" /><button (click)="sendMsg()">Send</button>
       </div>
     </body>
 </html>

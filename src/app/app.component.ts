@@ -12,25 +12,22 @@ export class AppComponent {
   loginInput : string;
   isLogin : boolean;
   msgs = [];
-  writting: boolean;
+  writting: any[] = [];
 
   constructor(private chatService : ChatService) {}
 
   ngOnInit() {
-    this.chatService
-    .getMessage()
-    .subscribe(msg => {
-      this.msgs.push({type:2,msg:msg})
-      if(this.msgs.length>7){
-        setTimeout(()=>this.msgs.pop(),3000)
-      }
-    });
 
     this.chatService
     .getWritting()
-    .subscribe(state => {
-      this.writting=state
-
+    .subscribe(write => {
+      if(write.state){
+        if(this.writting.indexOf(write.user)==-1){
+          this.writting.push(write.user);
+        }
+      }else{
+        this.writting.splice(this.writting.indexOf(write.user))
+      }
     });
   }
 
@@ -38,15 +35,30 @@ export class AppComponent {
     if(this.msgInput!=""){
       this.msgs.push({type:1,msg:this.msgInput})
       this.chatService.sendMessage('message',this.msgInput);
+      this.chatService.sendMessage('writting',false);
       this.msgInput="";
+    }
+  }
+
+  sendWrite(){
+    console.log(this.msgInput)
+    if(this.msgInput!=""){
+      this.chatService.sendMessage('writting',true);
+    }else{
+      this.chatService.sendMessage('writting',false);
     }
   }
 
   login(){
     if(this.msgInput!=""){
       this.chatService.sendMessage('login',this.loginInput);
-      this.msgs.push({type:2,msg:"Bienvenido a ZapWhat, "+this.loginInput})
       this.isLogin=true;
+
+      this.chatService
+      .getMessage()
+      .subscribe(msg => {
+        this.msgs.push({type:2,msg:msg.msg,user:msg.user})
+      });
     }
   }
 }

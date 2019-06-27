@@ -8,7 +8,7 @@ export class ChatService {
 
   constructor(private socket: Socket) { }
  
-  sendMessage(topic,msg: string){
+  sendMessage(topic,msg: any){
       this.socket.emit(topic, msg);
   }
    getMessage() {

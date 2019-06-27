@@ -15,6 +15,10 @@ div.login button { width: 9.6%; background: #1EBEA5; border: none; padding: 10px
     width: 50%;margin-left: 50%;    word-wrap: break-word;}
 .header{color:#1EBEA5;}
 .writting{background:none!important;font-weight: bold}
+.user{color:green;   
+    position: relative;
+    bottom: 1ex; 
+    font-size: 80%; }
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
