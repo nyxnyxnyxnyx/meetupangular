@@ -6,13 +6,23 @@
 
     </style>
   </head>
-  <body>
-    <h1 class="header">ZapWhat</h1>
-    <ul id="messages">
-      <li *ngFor="let msg of msgs" [ngClass]="{'serverMsg':msg.type==1}">{{msg.msg}}</li>
-    </ul>
+  <body *ngIf="!isLogin">
     <div>
-      <input [(ngModel)]="msgInput" (keyup.enter)="sendMsg()" id="m" autocomplete="off" /><button (click)="sendMsg()">Send</button>
+        <h1 class="header">Bienvenido a ZapWhat,</h1>
+        <h1 class="header">por favor ingrese un usuario</h1>
+    </div>
+    <div class="login">
+      <input [(ngModel)]="loginInput" (keyup.enter)="login()" id="m" autocomplete="off" /><button (click)="login()">Ingresar</button>
     </div>
   </body>
+  <body *ngIf="isLogin">
+      <h1 class="header">ZapWhat</h1>
+      <ul id="messages">
+        <li *ngFor="let msg of msgs" [ngClass]="{'serverMsg':msg.type==2,'serverMsg2':msg.type==1}">{{msg.msg}}</li>
+        <li *ngIf="writting" class="writting animated bounce">Zappy esta escribiendo...</li>
+      </ul>
+      <div class="msg">
+        <input [(ngModel)]="msgInput" (keyup.enter)="sendMsg()" id="m" autocomplete="off" /><button (click)="sendMsg()">Send</button>
+      </div>
+    </body>
 </html>
